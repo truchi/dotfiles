@@ -55,6 +55,10 @@ exec zsh
 - Autosuggests
 - Substring search
 
+### Misc
+
+- Colored man pages
+
 ## Docs & Resources
 
 - (Website)[http://zsh.sourceforge.net/Doc/Release/zsh_toc.html]

@@ -55,3 +55,6 @@ exec zsh
 - Substring search
 
 ## Docs & Resources
+
+- (Website)[http://zsh.sourceforge.net/Doc/Release/zsh_toc.html]
+- (ZSH reference card)[http://www.bash2zsh.com/zsh_refcard/refcard.pdf]

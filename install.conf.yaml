@@ -7,7 +7,7 @@
 
 - link:
     ~/.dotfiles: ''
-    # ~/.zshrc: zsh/zshrc.zsh
+    ~/.zshrc: zsh/zshrc.zsh
     ~/.spacemacs: spacemacs/spacemacs.el
     ~/.fonts: fonts/
 

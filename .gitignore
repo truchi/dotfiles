@@ -1,0 +1,6 @@
+# ZSH
+/zsh/caches/
+
+# Temp files
+*.swp
+*.#*

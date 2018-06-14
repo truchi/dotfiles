@@ -198,6 +198,9 @@ setopt   HIST_IGNORE_SPACE              # Forgets commands with leading space (a
 setopt   HIST_NO_FUNCTIONS              # Forgets function definitions (after next command)
 setopt   HIST_FCNTL_LOCK                # Locks with OS locking system
 
+# Aliases
+alias h='history'
+
 # Respect order (best at end of file): zsh-autosuggestions, zsh-syntax-highlighting, zsh-history-substring-search
 # Auto suggestions plugin (https://github.com/zsh-users/zsh-autosuggestions)
 source "$DIR/modules/zsh-autosuggestions/zsh-autosuggestions.zsh"

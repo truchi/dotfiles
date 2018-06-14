@@ -13,6 +13,7 @@ DIR=$(readlink -e ~/.dotfiles/zsh)      # Resolved path
 
 export VISUAL=nano
 export EDITOR=$VISUAL
+export PAGER='less'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #
@@ -211,3 +212,15 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 # History substring search plugin (https://github.com/zsh-users/zsh-history-substring-search)
 source "$DIR/modules/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# ##################################### #
+# > Aliases / Functions                 #
+# ##################################### #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+# Colorized, paged cat
+dog() {
+    highlight -l --force -O ansi $1 | $PAGER -R
+}
+

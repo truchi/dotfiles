@@ -19,6 +19,7 @@ exec zsh
 ## Tools
 
 - [fasd](https://github.com/clvv/fasd)
+- [highlight](https://linux.die.net/man/1/highlight)
 
 ## Features
 

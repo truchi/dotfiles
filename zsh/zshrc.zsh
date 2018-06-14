@@ -33,6 +33,28 @@ unsetopt AUTO_REMOVE_SLASH              # Remove slashes at end of completions
 setopt   EXTENDED_GLOB                  # ‘#’, ‘~’ and ‘^’ treated as pattern part for file extension
 setopt   GLOB_DOTS                      # Matches dotfiles
 
+# @see https://github.com/mattjj/my-oh-my-zsh/blob/master/completion.zsh
+# Highlight current completion
+zstyle ':completion:*' menu select
+
+# Approximate completions
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3)) numeric)'
+
+# Group matches and describe
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+
 # Command not found
 if [[ -s '/etc/zsh_command_not_found' ]] # Debian-based
 then

@@ -29,12 +29,21 @@ exec zsh
 - Command correction (system & fuck)
 - Install suggestions
 - Command completions caching
+- Autosuggestions
 
 ### Prompts
 
 - Syntax highlight
 - Allows comments
 - No beeps
+
+### History
+
+- Shared, time & duration
+- No dups nor blanks
+- Ignores (after next command) commands with leading blank
+- Ignores (after next command) function definitions
+- Substring search
 
 ### Keybindings
 
@@ -46,15 +55,6 @@ exec zsh
 - Symlink resolution
 - Auto cd/pushd
 - fasd
-
-### History
-
-- Shared, time & duration
-- No dups nor blanks
-- Ignores (after next command) commands with leading blank
-- Ignores (after next command) function definitions
-- Autosuggests
-- Substring search
 
 ### Misc
 

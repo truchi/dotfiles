@@ -62,7 +62,7 @@ source '/etc/zsh_command_not_found'
 # thefuck (https://github.com/nvbn/thefuck)
 # Alias
 eval "$(thefuck --alias)"
-alias !=fuck
+alias ff=fu
 
 # Binding
 fuck-command-line() {
@@ -106,6 +106,9 @@ setopt   INTERACTIVE_COMMENTS           # Allows comments in interactive shells
 # Syntax highlight plugin (https://github.com/zsh-users/zsh-syntax-highlighting)
 source "$DIR/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+# Autopair (https://github.com/hlissner/zsh-autopair)
+source "$DIR/modules/zsh-autopair/autopair.zsh"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #

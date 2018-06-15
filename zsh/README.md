@@ -36,6 +36,7 @@ exec zsh
 ### Prompts
 
 - Syntax highlight
+- Autopair
 - Allows comments
 - No beeps
 

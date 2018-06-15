@@ -246,6 +246,30 @@ my-post-chpwd() {
 zle -N accept-line my-post-accept-line
 chpwd_functions+=(my-post-chpwd)
 
+# Autocomplete on empty buffer (@see https://github.com/nachoparker/tab_list_files_zsh_widget)
+my-empty-buffer-completions() {
+    # $<TAB> -> change directory
+    if [[ $#BUFFER == 0 ]]; then
+        BUFFER="cd "
+        CURSOR=3
+        zle list-choices
+    # $<SPC><TAB> -> print file
+    elif [[ $BUFFER =~ ^[[:space:]]*$ ]]; then
+        BUFFER="dog "
+        CURSOR=4
+        zle list-choices
+    # $<SPC><SPC><TAB> -> executables
+    elif [[ $BUFFER =~ ^[[:space:]][[:space:]].*$ ]]; then
+         BUFFER="./"
+         CURSOR=2
+         zle list-choices
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N my-empty-buffer-completions
+bindkey '^I' my-empty-buffer-completions
+
 # colorls (https://github.com/athityakumar/colorls)
 # tab completion
 compdef _gnu_generic colorls

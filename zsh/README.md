@@ -59,6 +59,7 @@ exec zsh
 - fasd
 - Auto ls & git status
 - colorls (ls, on accept empty line)
+- Autocomplete on empty buffer
 
 ### Aliases / Functions
 

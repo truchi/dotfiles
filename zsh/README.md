@@ -20,12 +20,13 @@ exec zsh
 
 - [fasd](https://github.com/clvv/fasd)
 - [highlight](https://linux.die.net/man/1/highlight)
+- [thefuck](https://github.com/nvbn/thefuck)
 
 ## Features
 
 ### Completion
 
-- Command correction
+- Command correction (system & fuck)
 - Install suggestions
 - Command completions caching
 

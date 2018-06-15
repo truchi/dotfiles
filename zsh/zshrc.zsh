@@ -26,7 +26,7 @@ autoload -Uz compinit                   # Completion system
 compinit -d "$DIR/caches/.zcompdump"
 
 # Parameters
-SPROMPT='%R->%r? [nyae]'                # Command correction prompt
+SPROMPT='%R->%r? [Nyae]'                # Command correction prompt
 
 # Options
 setopt   CORRECT                        # Tries to correct misspelled commands (no,yes,abort,edit)
@@ -61,6 +61,21 @@ if [[ -s '/etc/zsh_command_not_found' ]] # Debian-based
 then
     source '/etc/zsh_command_not_found'
 fi
+
+# thefuck (https://github.com/nvbn/thefuck)
+# Alias
+eval "$(thefuck --alias)"
+alias !=fuck
+
+# Binding
+fuck-command-line() {
+    local FUCK="$(THEFUCK_REQUIRE_CONFIRMATION=0 thefuck $(fc -ln -1 | tail -n 1) 2> /dev/null)"
+    [[ -z $FUCK ]] && return
+    BUFFER=$FUCK
+    zle end-of-line
+}
+zle -N fuck-command-line
+bindkey "^[^M" fuck-command-line        # Places thefuck correction into buffer
 
 # NPM completions caching
 # (@see https://github.com/sorin-ionescu/prezto/blob/master/modules/node/init.zsh#L31)
@@ -111,8 +126,6 @@ bindkey -e                              # Emacs keymap
 #   `read` or `showkey -a` to discover key sequences
 #   `bindkey` to list bindings for current map
 #   `zle -al` to list all zle widgets
-# Accept
-bindkey "^[^M"      accept-and-hold                         # (M-RET    ) Runs command and prints it back in
 # Move
 bindkey "^[[1;2C"   end-of-line                             # (S-RIGHT  ) End of line
 bindkey "^[[1;5C"   forward-word                            # (C-RIGHT  ) Beginning of next word

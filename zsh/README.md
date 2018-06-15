@@ -64,3 +64,4 @@ exec zsh
 
 - (Website)[http://zsh.sourceforge.net/Doc/Release/zsh_toc.html]
 - (ZSH reference card)[http://www.bash2zsh.com/zsh_refcard/refcard.pdf]
+- (Awesome ZSH)[https://github.com/unixorn/awesome-zsh-plugins]

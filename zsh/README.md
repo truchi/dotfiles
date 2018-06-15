@@ -56,6 +56,10 @@ exec zsh
 - Auto cd/pushd
 - fasd
 
+### Aliases / Functions
+
+- dog: colored, paged, cat
+
 ### Misc
 
 - Colored man pages

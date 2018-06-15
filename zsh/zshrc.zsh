@@ -110,11 +110,6 @@ setopt   INTERACTIVE_COMMENTS           # Allows comments in interactive shells
 source "$DIR/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-# Shut up!
-unsetopt BEEP                           # Beeps on ZLE errors
-unsetopt HIST_BEEP                      # Beeps on history errors
-unsetopt LIST_BEEP                      # Beeps on completions errors
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #
 # > History                             #
@@ -250,3 +245,8 @@ export less_termcap_so=$'\e[01;44;33m' # begin reverse video
 export less_termcap_se=$'\e[0m'        # reset reverse video
 export less_termcap_us=$'\e[1;32m'     # begin underline
 export less_termcap_ue=$'\e[0m'        # reset underline
+
+# Shut up!
+unsetopt BEEP                           # Beeps on ZLE errors
+unsetopt HIST_BEEP                      # Beeps on history errors
+unsetopt LIST_BEEP                      # Beeps on completions errors

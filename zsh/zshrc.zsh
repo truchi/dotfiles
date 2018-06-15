@@ -57,10 +57,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 
 # Command not found
-if [[ -s '/etc/zsh_command_not_found' ]] # Debian-based
-then
-    source '/etc/zsh_command_not_found'
-fi
+source '/etc/zsh_command_not_found'
 
 # thefuck (https://github.com/nvbn/thefuck)
 # Alias

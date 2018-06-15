@@ -188,7 +188,7 @@ bindkey "^[z"       redo                                    # (M-z      ) Redo
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #
-# > Navigation                          #
+# > Navigation & List                   #
 # ##################################### #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -216,6 +216,43 @@ unset cache_file
 
 # Suggestions from man page
 compdef _gnu_generic fasd
+
+# Auto ls & git status (@see https://github.com/desyncr/auto-ls)
+my-show-git-short-status() {
+    if [[ $(git rev-parse --git-dir 2> /dev/null) == .git ]]; then
+        git status --short --branch
+    fi
+}
+
+my-show-files() colorls --almost-all --sort-dirs --git-status
+
+my-post-accept-line() {
+    if [[ $#BUFFER -eq 0 ]]; then
+        zle && echo ""
+        my-show-files
+        echo ""
+        echo "" # This will be eaten up (by redisplay?) somehow (if prompt has newlines?) ...
+        zle && zle redisplay
+    else
+        zle .$WIDGET
+    fi
+}
+
+my-post-chpwd() {
+    my-show-git-short-status
+    my-show-files
+}
+
+zle -N accept-line my-post-accept-line
+chpwd_functions+=(my-post-chpwd)
+
+# colorls (https://github.com/athityakumar/colorls)
+# tab completion
+compdef _gnu_generic colorls
+
+# Alias
+alias ll='colorls --almost-all --sort-dirs --git-status --long'
+alias ls='colorls'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #

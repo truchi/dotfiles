@@ -16,11 +16,13 @@ exec zsh
 - [Syntax highlight plugin](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [History substring search plugin](https://github.com/zsh-users/zsh-history-substring-search)
 
-## Tools
+## Tools (to install)
 
 - [fasd](https://github.com/clvv/fasd)
 - [highlight](https://linux.die.net/man/1/highlight)
 - [thefuck](https://github.com/nvbn/thefuck)
+- [NerdFonts](https://github.com/ryanoasis/nerd-fonts) (FiraMono, already in /fonts)
+- [colorls](https://github.com/athityakumar/colorls)
 
 ## Features
 
@@ -50,11 +52,13 @@ exec zsh
 - Emacs keymap
 - Custom bindings
 
-### Navigation
+### Navigation & List
 
 - Symlink resolution
 - Auto cd/pushd
 - fasd
+- Auto ls & git status
+- colorls (ls, on accept empty line)
 
 ### Aliases / Functions
 

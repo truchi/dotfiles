@@ -14,6 +14,7 @@ DIR=$(readlink -e ~/.dotfiles/zsh)      # Resolved path
 export VISUAL=nano
 export EDITOR=$VISUAL
 export PAGER='less'
+WORDCHARS='*?_.[]~&;!#$%^(){}<>'
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #
@@ -159,12 +160,12 @@ bindkey -e                              # Emacs keymap
 bindkey "^[OA"      history-substring-search-up             # (UP       ) Searches substr up in history
 bindkey "^[OB"      history-substring-search-down           # (DOWN     ) Searches substr down in history
 bindkey "^[[1;2C"   end-of-line                             # (S-RIGHT  ) End of line
-bindkey "^[[1;5C"   forward-word                            # (C-RIGHT  ) Beginning of next word
+bindkey "^[[1;5C"   vi-forward-blank-word                   # (C-RIGHT  ) Beginning of next word
 bindkey "^[[1;6C"   vi-forward-blank-word-end               # (C-S-RIGHT) End of word
 bindkey "^[[1;3C"   vi-forward-word                         # (M-RIGHT  ) Beginning of next sub-word
 bindkey "^[[1;4C"   vi-forward-word-end                     # (M-S-RIGHT) End of sub-word
 bindkey "^[[1;2D"   beginning-of-line                       # (S-LEFT   ) Beginning of line
-bindkey "^[[1;5D"   backward-word                           # (C-LEFT   ) Beginning of word
+bindkey "^[[1;5D"   vi-backward-blank-word                  # (C-LEFT   ) Beginning of word TODO now this is same as M-LEFT... (with wordchars)
 bindkey "^[[1;6D"   vi-backward-blank-word-end              # (C-S-LEFT ) End of previous word
 bindkey "^[[1;3D"   vi-backward-word                        # (M-LEFT   ) Beginning of sub-word
 bindkey "^[[1;4D"   vi-backward-word-end                    # (M-S-LEFT ) End of prev sub-word

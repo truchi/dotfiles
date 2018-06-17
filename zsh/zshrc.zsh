@@ -319,3 +319,6 @@ export less_termcap_ue=$'\e[0m'         # reset underline
 unsetopt BEEP                           # Beeps on ZLE errors
 unsetopt HIST_BEEP                      # Beeps on history errors
 unsetopt LIST_BEEP                      # Beeps on completions errors
+
+# Start screen
+fortune | cowsay -f `/bin/ls -1 /usr/share/cowsay/cows/ | sort -R | head -1` -w | lolcat

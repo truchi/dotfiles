@@ -13,3 +13,6 @@
 [submodule "zsh/modules/zsh-autopair"]
 	path = zsh/modules/zsh-autopair
 	url = https://github.com/hlissner/zsh-autopair.git
+[submodule "zsh/modules/filthy"]
+	path = zsh/modules/filthy
+	url = https://github.com/molovo/filthy.git

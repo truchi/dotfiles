@@ -15,6 +15,7 @@ export VISUAL=nano
 export EDITOR=$VISUAL
 export PAGER='less'
 WORDCHARS='*?_.[]~&;!#$%^(){}<>'
+fpath=( "$HOME/.zfunctions" $fpath )
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #
@@ -99,7 +100,7 @@ autoload -Uz promptinit                 # Prompt module
 promptinit
 
 # Prompt
-prompt adam2
+prompt filthy
 
 # Options
 setopt   INTERACTIVE_COMMENTS           # Allows comments in interactive shells

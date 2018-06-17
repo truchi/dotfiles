@@ -15,6 +15,7 @@ exec zsh
 - [Auto suggestions plugin](https://github.com/zsh-users/zsh-autosuggestions)
 - [Syntax highlight plugin](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [History substring search plugin](https://github.com/zsh-users/zsh-history-substring-search)
+- [Filthy prompt](https://github.com/molovo/filthy)
 
 ## Tools (to install)
 
@@ -35,6 +36,7 @@ exec zsh
 
 ### Prompts
 
+- Filthy
 - Syntax highlight
 - Autopair
 - Allows comments

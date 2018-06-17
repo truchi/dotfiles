@@ -8,6 +8,8 @@
 - link:
     ~/.dotfiles: ''
     ~/.zshrc: zsh/zshrc.zsh
+    ~/.zfunctions: zsh/functions
+    ~/.zfunctions/prompt_filthy_setup: zsh/modules/filthy/filthy.zsh
     ~/.spacemacs: spacemacs/spacemacs.el
     ~/.fonts: fonts/
 

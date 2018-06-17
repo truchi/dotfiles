@@ -61,6 +61,7 @@ exec zsh
 - Auto ls & git status
 - colorls (ls, on accept empty line)
 - Autocomplete on empty buffer
+- Parent dirs dot aliases
 
 ### Aliases / Functions
 

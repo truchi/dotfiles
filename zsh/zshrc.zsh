@@ -280,6 +280,14 @@ compdef _gnu_generic colorls
 # Alias
 alias ll='colorls --almost-all --sort-dirs --git-status --long'
 alias ls='colorls'
+alias .=../                             # Parent directory
+alias ..=../../                         # Up 2
+alias ...=../../../                     # Up 3
+alias ....=../../../../                 # Up 4
+alias .....=../../../../../             # Up 5
+alias ......=../../../../../../         # Up 6
+alias .......=../../../../../../../     # Up 7
+alias ........=../../../../../../../../ # Up 8
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #

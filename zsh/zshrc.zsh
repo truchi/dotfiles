@@ -258,16 +258,16 @@ my-empty-buffer-completions() {
         BUFFER="cd "
         CURSOR=3
         zle list-choices
+    # $<SPC><SPC><TAB> -> executables
+    elif [[ $BUFFER =~ ^[[:space:]][[:space:]].*$ ]]; then
+        BUFFER="./"
+        CURSOR=2
+        zle list-choices
     # $<SPC><TAB> -> print file
     elif [[ $BUFFER =~ ^[[:space:]]*$ ]]; then
         BUFFER="dog "
         CURSOR=4
         zle list-choices
-    # $<SPC><SPC><TAB> -> executables
-    elif [[ $BUFFER =~ ^[[:space:]][[:space:]].*$ ]]; then
-         BUFFER="./"
-         CURSOR=2
-         zle list-choices
     else
         zle expand-or-complete
     fi

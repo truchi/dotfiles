@@ -68,6 +68,7 @@ exec zsh
 ### Aliases / Functions
 
 - dog: colored, paged, cat
+- Parent (up to 8, dots) and prev directories (comma)
 
 ### Misc
 

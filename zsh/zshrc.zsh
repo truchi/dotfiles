@@ -268,6 +268,11 @@ my-empty-buffer-completions() {
         BUFFER="dog "
         CURSOR=4
         zle list-choices
+    # $,<TAB> -> previous directories
+    elif [[ $BUFFER =~ ^,*$ ]]; then
+        BUFFER="cd -"
+        CURSOR=4
+        zle list-choices
     else
         zle expand-or-complete
     fi
@@ -279,9 +284,20 @@ bindkey '^I' my-empty-buffer-completions
 # tab completion
 compdef _gnu_generic colorls
 
+# Completions for . (-> ./) and .. (-> ../)
+zstyle ':completion:*' special-dirs true
+
 # Alias
 alias ll='colorls --almost-all --sort-dirs --git-status --long'
 alias ls='colorls'
+alias ,='cd -1'                         # Previous directory
+alias ,,='cd -2'                        # Prev 2
+alias ,,,='cd -3'                       # Prev 3
+alias ,,,,='cd -4'                      # Prev 4
+alias ,,,,,='cd -5'                     # Prev 5
+alias ,,,,,,='cd -6'                    # Prev 6
+alias ,,,,,,,='cd -7'                   # Prev 7
+alias ,,,,,,,,='cd -8'                  # Prev 8
 alias .=../                             # Parent directory
 alias ..=../../                         # Up 2
 alias ...=../../../                     # Up 3

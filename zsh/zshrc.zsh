@@ -273,6 +273,11 @@ my-empty-buffer-completions() {
         BUFFER="cd -"
         CURSOR=4
         zle list-choices
+   # $.<TAB> -> parent directories
+    elif [[ $BUFFER =~ '^(\.)*$' ]]; then
+        BUFFER="up /"
+        CURSOR=4
+        zle list-choices
     else
         zle expand-or-complete
     fi
@@ -306,6 +311,42 @@ alias .....=../../../../../             # Up 5
 alias ......=../../../../../../         # Up 6
 alias .......=../../../../../../../     # Up 7
 alias ........=../../../../../../../../ # Up 8
+
+# Up: go to parent dir, with competions!
+up () {
+    if [[ $# == 0 ]]; then
+        cd ../
+    else
+        cd $1
+    fi
+}
+
+_up() {
+    local dir
+    local parent
+    local -a dirs
+    local -a strs
+
+    dir=$(pwd)
+    parent=$(dirname $dir)
+    dirs=($parent)
+    strs=($parent)
+
+    if [[ $parent == $dir ]]; then
+        return
+    fi
+
+    while [[ $parent != $dir ]]; do
+        dir=$parent
+        parent=$(dirname $dir)
+        dirs=($dirs $parent)
+        strs=($strs $parent)
+    done
+
+    compadd -l -V "" -d strs -a dirs
+}
+
+compdef _up up
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #

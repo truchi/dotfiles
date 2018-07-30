@@ -143,17 +143,13 @@ source "$DIR/modules/zsh-history-substring-search/zsh-history-substring-search.z
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #
-# > Key Remaps                          #
-# ##################################### #
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-setxkbmap -option ctrl:nocaps           # CAPS acts as CTRL
-xcape -t 200 -e "Control_L=Escape"      # CTRL-LEFT & CAPS act as ESC when pressed shortly
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# ##################################### #
 # > Keybindings                         #
 # ##################################### #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+# Key remaps
+setxkbmap -option                       # Removes previous mappings
+setxkbmap -option caps:escape           # CAPS acts as ESC
 
 # Parameters
 KEYTIMEOUT=40                           # Multi char sequence timeout (ms)

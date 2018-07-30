@@ -291,7 +291,7 @@ my-empty-buffer-completions() {
     fi
 }
 zle -N my-empty-buffer-completions
-bindkey '^I' my-empty-buffer-completions
+bindkey '^I' my-empty-buffer-completions                    # (TAB) empty buffer completions
 
 # colorls (https://github.com/athityakumar/colorls)
 # tab completion

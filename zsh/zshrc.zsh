@@ -235,21 +235,19 @@ my-show-git-short-status() {
 
 my-show-files() colorls --almost-all --sort-dirs --git-status
 
+my-post-chpwd() {
+    my-show-git-short-status
+    my-show-files
+}
+
 my-post-accept-line() {
     if [[ $#BUFFER -eq 0 ]]; then
         zle && echo ""
-        my-show-files
-        echo ""
-        echo "" # This will be eaten up (by redisplay?) somehow (if prompt has newlines?) ...
+        my-post-chpwd
         zle && zle redisplay
     else
         zle .$WIDGET
     fi
-}
-
-my-post-chpwd() {
-    my-show-git-short-status
-    my-show-files
 }
 
 zle -N accept-line my-post-accept-line

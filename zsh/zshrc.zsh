@@ -64,7 +64,7 @@ source '/etc/zsh_command_not_found'
 # thefuck (https://github.com/nvbn/thefuck)
 # Alias
 eval "$(thefuck --alias)"
-alias ff=fu
+alias ff=fuck
 
 # Binding
 fuck-command-line() {
@@ -74,7 +74,7 @@ fuck-command-line() {
     zle end-of-line
 }
 zle -N fuck-command-line
-bindkey "^[^M" fuck-command-line        # Places thefuck correction into buffer
+bindkey "^[^M" fuck-command-line        # (M-ENTER) Places thefuck correction into buffer
 
 # Auto suggestions plugin (https://github.com/zsh-users/zsh-autosuggestions)
 source "$DIR/modules/zsh-autosuggestions/zsh-autosuggestions.zsh"

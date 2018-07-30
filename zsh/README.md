@@ -63,12 +63,11 @@ exec zsh
 - Auto ls & git status
 - colorls (ls, on accept empty line)
 - Autocomplete on empty buffer
-- Parent dirs dot aliases
 
 ### Aliases / Functions
 
 - dog: colored, paged, cat
-- Parent (up to 8, dots) and prev directories (comma)
+- Parent (up to 8, dots) and prev directories (comma) (with completions)
 
 ### Misc
 

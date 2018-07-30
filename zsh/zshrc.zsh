@@ -383,3 +383,12 @@ unsetopt LIST_BEEP                      # Beeps on completions errors
 
 # Start screen
 fortune | cowsay -f `/bin/ls -1 /usr/share/cowsay/cows/ | sort -R | head -1` -w | lolcat
+
+# Reloads config
+my-reload() {
+    source $DIR/zshrc.zsh
+    zle && zle redisplay
+}
+
+zle -N my-reload
+bindkey "^R" my-reload                  # (C-R) Reloads ZSH config

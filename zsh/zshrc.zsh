@@ -100,7 +100,8 @@ autoload -Uz promptinit                 # Prompt module
 promptinit
 
 # Prompt
-prompt filthy
+prompt adam2
+# prompt filthy
 
 # Options
 setopt   INTERACTIVE_COMMENTS           # Allows comments in interactive shells

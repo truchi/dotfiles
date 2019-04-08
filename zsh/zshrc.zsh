@@ -228,7 +228,8 @@ compdef _gnu_generic fasd
 
 # Auto ls & git status (@see https://github.com/desyncr/auto-ls)
 my-show-git-short-status() {
-    if [[ $(git rev-parse --git-dir 2> /dev/null) == .git ]]; then
+    if [[ $(git rev-parse --git-dir 2> /dev/null) == .git ]]
+    then
         git status --short --branch
     fi
 }
@@ -241,7 +242,8 @@ my-post-chpwd() {
 }
 
 my-post-accept-line() {
-    if [[ $#BUFFER -eq 0 ]]; then
+    if [[ $#BUFFER -eq 0 ]]
+    then
         zle && echo ""
         my-post-chpwd
         zle && zle redisplay
@@ -256,27 +258,32 @@ chpwd_functions+=(my-post-chpwd)
 # Autocomplete on empty buffer (@see https://github.com/nachoparker/tab_list_files_zsh_widget)
 my-empty-buffer-completions() {
     # $<TAB> -> change directory
-    if [[ $#BUFFER == 0 ]]; then
+    if [[ $#BUFFER == 0 ]]
+    then
         BUFFER="cd "
         CURSOR=3
         zle list-choices
     # $<SPC><SPC><TAB> -> executables
-    elif [[ $BUFFER =~ ^[[:space:]][[:space:]].*$ ]]; then
+    elif [[ $BUFFER =~ ^[[:space:]][[:space:]].*$ ]]
+    then
         BUFFER="./"
         CURSOR=2
         zle list-choices
     # $<SPC><TAB> -> print file
-    elif [[ $BUFFER =~ ^[[:space:]]*$ ]]; then
+    elif [[ $BUFFER =~ ^[[:space:]]*$ ]]
+    then
         BUFFER="dog "
         CURSOR=4
         zle list-choices
     # $,<TAB> -> previous directories
-    elif [[ $BUFFER =~ ^,*$ ]]; then
+    elif [[ $BUFFER =~ ^,*$ ]]
+    then
         BUFFER="cd -"
         CURSOR=4
         zle list-choices
    # $.<TAB> -> parent directories
-    elif [[ $BUFFER =~ '^(\.)*$' ]]; then
+    elif [[ $BUFFER =~ '^(\.)*$' ]]
+    then
         BUFFER="up /"
         CURSOR=4
         zle list-choices
@@ -316,7 +323,8 @@ alias ........=../../../../../../../../ # Up 8
 
 # Up: go to parent dir, with competions!
 up () {
-    if [[ $# == 0 ]]; then
+    if [[ $# == 0 ]]
+    then
         cd ../
     else
         cd $1
@@ -334,7 +342,8 @@ _up() {
     dirs=($parent)
     strs=($parent)
 
-    if [[ $parent == $dir ]]; then
+    if [[ $parent == $dir ]]
+    then
         return
     fi
 

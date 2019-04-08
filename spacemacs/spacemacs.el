@@ -31,43 +31,61 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     markdown
-     php
-     html
-     javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     markdown
+     yaml
+     html
+     javascript
+     react
      helm
-     ;; auto-completion
-     ;; better-defaults
+     (auto-completion :variables
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t ;; or 'manual & M-h
+                      auto-completion-enable-sort-by-usage t)
+     better-defaults
      emacs-lisp
      git
-     ;; markdown
-     org
-     yaml
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
+     shell-scripts
+     syntax-checking
+     (wakatime :variables
+               wakatime-api-key "3359de5d-0d20-470e-a3ae-847102c2c1e1"
+               wakatime-cli-path "/usr/local/bin/wakatime"
+      )
      (version-control :variables
-                       version-control-diff-side 'left)
+                      version-control-diff-side 'left)
+     (shell :variables
+            shell-default-shell 'ansi-term
+            shell-default-term-shell "/usr/bin/zsh"
+            shell-default-height 30
+            shell-default-position 'bottom)
+     ;; (colors :variables
+     ;;         colors-colorize-identifiers 'variables)
+     ;; themes-megapack
+     ;; spell-checking
+     ;; org
+     ;; php
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     ;; doom-themes
+     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
-     fill-column-indicator
-     evil-escape
-     )
+                                    fill-column-indicator
+                                    evil-escape
+                                    ;; tern
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -187,7 +205,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -229,14 +247,14 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -285,7 +303,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -299,7 +317,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -318,6 +336,143 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Native fullscreen (f11)
+  (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+
+  (setq-default
+   tab-width 2
+   js2-basic-offset 2
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2
+   js2-mode-show-parse-errors nil
+   js2-mode-show-strict-warnings nil
+   )
+
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+    )
+
+  (custom-set-faces
+   '(company-tooltip-common
+     ((t (:inherit company-tooltip :weight bold))))
+   '(company-tooltip-common-selection
+     ((t (:inherit company-tooltip-selection :weight bold :underline t)))))
+
+  (delete-selection-mode 1)
+  (mouse-avoidance-mode 'banish)
+
+  (spacemacs/toggle-indent-guide-globally-on)
+  (spacemacs/toggle-aggressive-indent-globally-on)
+  (spacemacs/toggle-camel-case-motion-globally-on)
+
+  (spacemacs/toggle-whitespace-on)
+  (set-face-attribute 'whitespace-space   nil :foreground "#33375a")
+  (set-face-attribute 'whitespace-newline nil :foreground "#33375a")
+
+  ;; Slows code navigation a lot...
+  ;; (setq whitespace-display-mappings '(
+  ;;                                     (space-mark ?\  [?·])
+  ;;                                     (newline-mark ?\n [?↵ ?\n])
+  ;;                                     (tab-mark ?\t [?\▶ ?\t])
+  ;;                                     )
+  ;;       )
+
+  ;; NO WHITESPACE IN VISUAL & COMPANY -- START
+  (defun my-toggle-whitespace-off (&optional arg)
+    (spacemacs/toggle-whitespace-off))
+  (defun my-toggle-whitespace-on (&optional arg)
+    (spacemacs/toggle-whitespace-on))
+
+  (add-hook 'company-completion-started-hook 'my-toggle-whitespace-off)
+  (add-hook 'company-after-completion-hook   'my-toggle-whitespace-on)
+  (add-hook 'evil-visual-state-entry-hook    'my-toggle-whitespace-off)
+  (add-hook 'evil-visual-state-exit-hook     'my-toggle-whitespace-on)
+  ;; NO WHITESPACE IN VISUAL & COMPANY -- END
+
+  ;; FIRA CODE MODE -- START
+  (defun fira-code-mode--make-alist (list)
+    "Generate prettify-symbols alist from LIST."
+    (let ((idx -1))
+      (mapcar
+       (lambda (s)
+         (setq idx (1+ idx))
+         (let* ((code (+ #Xe100 idx))
+                (width (string-width s))
+                (prefix ())
+                (suffix '(?\s (Br . Br)))
+                (n 1))
+           (while (< n width)
+             (setq prefix (append prefix '(?\s (Br . Bl))))
+             (setq n (1+ n)))
+           (cons s (append prefix suffix (list (decode-char 'ucs code))))))
+       list)))
+
+  (defconst fira-code-mode--ligatures
+    '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\"
+      "{-" "[]" "::" ":::" ":=" "!!" "!=" "!==" "-}"
+      "--" "---" "-->" "->" "->>" "-<" "-<<" "-~"
+      "#{" "#[" "##" "###" "####" "#(" "#?" "#_" "#_("
+      ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*"
+      "/**" "/=" "/==" "/>" "//" "///" "&&" "||" "||="
+      "|=" "|>" "^=" "$>" "++" "+++" "+>" "=:=" "=="
+      "===" "==>" "=>" "=>>" "<=" "=<<" "=/=" ">-" ">="
+      ">=>" ">>" ">>-" ">>=" ">>>" "<*" "<*>" "<|" "<|>"
+      "<$" "<$>" "<!--" "<-" "<--" "<->" "<+" "<+>" "<="
+      "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<" "<~"
+      "<~~" "</" "</>" "~@" "~-" "~=" "~>" "~~" "~~>" "%%"
+      "x" ":" "+" "+" "*"))
+
+  (defvar fira-code-mode--old-prettify-alist)
+
+  (defun fira-code-mode--enable ()
+    "Enable Fira Code ligatures in current buffer."
+    (setq-local fira-code-mode--old-prettify-alist prettify-symbols-alist)
+    (setq-local prettify-symbols-alist
+                (append
+                 (fira-code-mode--make-alist fira-code-mode--ligatures)
+                 fira-code-mode--old-prettify-alist))
+    (prettify-symbols-mode t))
+
+  (defun fira-code-mode--disable ()
+    "Disable Fira Code ligatures in current buffer."
+    (setq-local prettify-symbols-alist fira-code-mode--old-prettify-alist)
+    (prettify-symbols-mode -1))
+
+  (define-minor-mode fira-code-mode
+    "Fira Code ligatures minor mode"
+    :lighter " Fira Code"
+    (setq-local prettify-symbols-unprettify-at-point 'right-edge)
+    (if fira-code-mode
+        (fira-code-mode--enable)
+      (fira-code-mode--disable)))
+
+  (defun fira-code-mode--setup ()
+    "Setup Fira Code Symbols"
+    (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))
+  (provide 'fira-code-mode)
+
+  (add-hook 'prog-mode-hook 'fira-code-mode)
+  ;; FIRA CODE MODE -- END
+
+  ;; LOCAL ESLINT BIN FOR FLYCHECK -- START
+  (defun my/use-eslint-from-node-modules ()
+    (let* ((root (locate-dominating-file
+                  (or (buffer-file-name) default-directory)
+                  "node_modules"))
+           (eslint
+            (and root
+                 (expand-file-name "node_modules/.bin/eslint"
+                                   root))))
+      (when (and eslint (file-executable-p eslint))
+        (setq-local flycheck-javascript-eslint-executable eslint))))
+
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+  ;; LOCAL ESLINT BIN FOR FLYCHECK -- START
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

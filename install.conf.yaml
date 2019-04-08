@@ -11,6 +11,7 @@
     ~/.zfunctions: zsh/functions
     ~/.zfunctions/prompt_filthy_setup: zsh/modules/filthy/filthy.zsh
     ~/.spacemacs: spacemacs/spacemacs.el
+    ~/.emacs.d/private: spacemacs/private/
     ~/.config/systemd/user: config/systemd/user/
     ~/.fonts: fonts/
 

@@ -1,3 +1,6 @@
+# Config
+/config/**/default.target.wants
+
 # ZSH
 /zsh/caches/
 

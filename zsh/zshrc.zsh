@@ -370,6 +370,20 @@ dog() {
     highlight -l --force -O ansi $1 | $PAGER -R
 }
 
+# Opens emacs client in ~/ (reuse exiting frame)
+spc() {
+    : ${1:='~/'} # default 1st arg (file) to $HOME
+    cflag=''
+
+    emacsclient -n -e "(if (> (length (frame-list)) 1) 't)" | grep -q t
+    if [ "$?" = "1" ]
+    then
+        cflag='-c'
+    fi
+
+    nohup emacsclient $cflag -n "$@" $1 &
+}
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ##################################### #
 # > Misc                                #

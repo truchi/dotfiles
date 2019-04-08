@@ -382,7 +382,7 @@ spc() {
         cflag='-c'
     fi
 
-    nohup emacsclient $cflag -n "$@" $1 &
+    nohup emacsclient $cflag -n "$@" $1 >/dev/null 2>&1 &
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
